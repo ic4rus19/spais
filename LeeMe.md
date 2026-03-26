@@ -153,4 +153,8 @@ Se registran y organizan los Blueprints:
   * 
   
 
-
+# Commits y modificaciones.
+##  26/03/2026
+### Initial commit - estructura base Flask espais
+### Actualizar gitignore y añadir Git.md
+### Se oculta el boton de registrarse que esta en base.html

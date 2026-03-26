@@ -11,11 +11,6 @@ def create_app():
     # - Creamos la aplicacion
     app = Flask(__name__)
     
-    # - IMPORTACIONES PARA CKEDITOR
-
-    from flask_ckeditor import CKEditor
-    ckeditor = CKEditor(app)
-    
     # -IDIOMAS
 
     import locale
