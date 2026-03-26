@@ -1,16 +1,62 @@
+# ----------------------
+# ENTORNOS VIRTUALES
+# ----------------------
 _spais/
 venv/
 env/
+.venv/
+ENV/
 
+# ----------------------
+# PYTHON
+# ----------------------
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
 
+# ----------------------
+# VARIABLES SENSIBLES
+# ----------------------
 .env
-instance/
+.env.*
 
+# ----------------------
+# FLASK / BASE DE DATOS
+# ----------------------
+instance/
+*.db
+*.sqlite3
+
+# ----------------------
+# IDEs / EDITORES
+# ----------------------
 .vscode/
 .idea/
 
-_old
+# ----------------------
+# ARCHIVOS TEMPORALES
+# ----------------------
+_old/
+*.log
+*.tmp
+
+# ----------------------
+# BUILD / DISTRIBUCIÓN
+# ----------------------
+build/
+dist/
+*.egg-info/
+
+# ----------------------
+# TEST / CACHE
+# ----------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ----------------------
+# JUPYTER (por si acaso)
+# ----------------------
+.ipynb_checkpoints/

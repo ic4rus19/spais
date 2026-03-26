@@ -19,7 +19,9 @@ Antes de todo:
 
 # 1️⃣ Primera vez en tu PC (desarrollo). IMPORTANTE TENER EL ARCHIVO .gitignore
 
-##  0. - git init - git status - git add .
+##  0. - git init - git status - git add . -git commit -m "Initial commit" - 
+##  0. - git branch -M main -  git remote add origin https://github.com/ic4rus19/spais.git
+##  0. - git remote -v - git push -u origin main --force
 
 ### 1. Clonar el repositorio (recomendado por SSH)
 
