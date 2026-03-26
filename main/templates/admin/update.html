@@ -1,0 +1,152 @@
+<!-- update.html -->
+
+{% extends 'base.html' %}
+{% block title %}Modifica l'espai{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="header mb-4 mt-4">
+            <h1 class="h2 fw-bold">Modificar espai</h1>
+            <p class="text-muted mb-0">Actualitza les dades principals de l'espai</p>
+        </div>
+
+        <div class="body">
+            <form method="post">
+
+                <!-- - Dades principals -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="title" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="title" name="title" required
+                            value="{{ post.title }}" placeholder="Nom d'espai ...">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="edifici" class="form-label">Edifici</label>
+                        <input type="text" class="form-control" id="edifici" name="edifici"
+                            value="{{ post.edifici or '' }}" placeholder="Equipament municipal">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="tipus_espai" class="form-label">Tipus d'espai</label>
+                        <input type="text" class="form-control" id="tipus_espai" name="tipus_espai"
+                            value="{{ post.tipus_espai or '' }}" placeholder="Exposicio permanent">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="horaris" class="form-label">Horaris</label>
+                        <input type="text" class="form-control" id="horaris" name="horaris"
+                            value="{{ post.horaris or '' }}" placeholder="Ds., Dg. i festius, de 10 a 14 h.">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="adreca" class="form-label">Adreça</label>
+                    <input type="text" class="form-control" id="adreca" name="adreca" value="{{ post.adreca or '' }}"
+                        placeholder="Carretera Nova 36">
+                </div>
+
+                <!-- - Capacitat i control -->
+                <hr class="my-4">
+                <h2 class="h5 mb-3">Capacitat i control</h2>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="superficie_m2" class="form-label">Superficie m²</label>
+                        <input type="text" class="form-control" id="superficie_m2" name="superficie_m2"
+                            value="{{ post.superficie_m2 or '' }}" placeholder="200">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="aforament_maxim" class="form-label">Aforament maxim</label>
+                        <input type="text" class="form-control" id="aforament_maxim" name="aforament_maxim"
+                            value="{{ post.aforament_maxim or '' }}" placeholder="80">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="estat_conservacio" class="form-label">Estat conservacio</label>
+                        <input type="text" class="form-control" id="estat_conservacio" name="estat_conservacio"
+                            value="{{ post.estat_conservacio or '' }}" placeholder="Bo">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="claus" class="form-label">Claus</label>
+                        <input type="text" class="form-control" id="claus" name="claus" value="{{ post.claus or '' }}"
+                            placeholder="A01-13">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="neteja" class="form-label">Neteja</label>
+                        <input type="text" class="form-control" id="neteja" name="neteja"
+                            value="{{ post.neteja or '' }}" placeholder="2h setmanal">
+                    </div>
+                </div>
+
+                <!-- - Gestio -->
+                <hr class="my-4">
+                <h2 class="h5 mb-3">Gestio</h2>
+
+                <div class="mb-3">
+                    <label for="sistema_reserva" class="form-label">Sistema de reserva</label>
+                    <input type="text" class="form-control" id="sistema_reserva" name="sistema_reserva"
+                        value="{{ post.sistema_reserva or '' }}" placeholder="Instancia mes autoritzacio">
+                </div>
+
+                <div class="mb-3">
+                    <label for="responsable_municipal" class="form-label">Responsable municipal</label>
+                    <input type="text" class="form-control" id="responsable_municipal" name="responsable_municipal"
+                        value="{{ post.responsable_municipal or '' }}" placeholder="Ajuntament Vallgorguina">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="telefon" class="form-label">Telefon</label>
+                        <input type="text" class="form-control" id="telefon" name="telefon"
+                            value="{{ post.telefon or '' }}" placeholder="Telefon de contacte">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Correu electronic</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ post.email or '' }}"
+                            placeholder="correu@ajuntament.cat">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="taxa_preu_public" class="form-label">Taxa / preu public</label>
+                    <input type="text" class="form-control" id="taxa_preu_public" name="taxa_preu_public"
+                        value="{{ post.taxa_preu_public or '' }}" placeholder="50 €">
+                </div>
+
+                <!-- - Descripcio i contingut -->
+                <hr class="my-4">
+                <h2 class="h5 mb-3">Descripcio i contingut</h2>
+
+                <div class="mb-3">
+                    <label for="info" class="form-label">Descripcio breu</label>
+                    <textarea class="form-control" id="info" name="info" rows="3"
+                        placeholder="Breu descripcio ...">{{ post.info or '' }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="observacions" class="form-label">Observacions</label>
+                    <textarea class="form-control" id="observacions" name="observacions" rows="3"
+                        placeholder="Observacions internes o informacio adicional...">{{ post.observacions or '' }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Contingut ampliat</label>
+                    <textarea class="form-control" id="content" name="content" rows="6"
+                        placeholder="Contingut ampliat de l'espai...">{{ post.content or '' }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Actualitzar</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+_spais/
+venv/
+env/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+instance/
+
+.vscode/
+.idea/
+
+_old

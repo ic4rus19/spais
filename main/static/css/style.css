@@ -1,0 +1,86 @@
+/* -1) RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* -2) VARIABLES DEL PROYECTO */
+:root {
+    --white: #ffffff;
+
+    /* -Paleta principal */
+    --blue: #a8f5fb;
+    /* -fondos claros */
+    --blueF: #005277;
+    /* -corporativo */
+    --black: #221824;
+
+    /* -Texto */
+    --textwhite: #ffffff;
+    --textblack: #252524;
+
+    /* -UI */
+    --borderW: #e6e8ee;
+    --borderB: #01040e;
+    --muted: #cccccc;
+
+    /* -Tipografía */
+    /* --font: 'Raleway', sans-serif; */
+    --font: 'Montserrat', sans-serif;
+    
+}
+body {
+    font-family: var(--font);
+    padding-top: 10px;
+    /* navbar fixed */
+    color: var(--textblack);
+    background: var(--white);
+}
+
+h1{
+    color: var(--blueF);
+}
+.text-vallgorguina {    
+    color: var(--blueF);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .display-4 {
+        font-size: 3rem;
+    }
+}
+
+.flex-auto {
+    flex: 0 0 auto;
+}
+
+.h-250 {
+    height: 250px;
+}
+
+@media (min-width: 768px) {
+    .h-md-250 {
+        height: 250px;
+    }
+}
+
+/*   * Blog posts   */
+.blog-post {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.blog-post-title {
+    font-size: 2.5rem;
+}
+
+.blog-post-meta {
+    margin-bottom: 1.25rem;
+    color: #727272;
+}

@@ -1,0 +1,94 @@
+<!-- index.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- - Seccion de bienvenida -->
+<section class="container" {% if value %}hidden{% endif %}>
+    <div class="row align-items-center">
+
+        <!-- - Texto principal de bienvenida -->
+        <div class="col-md-6 py-5">
+            <h2 class="text-center">
+                Benvingut als espais públics de <span class="text-vallgorguina">Vallgorguina</span>
+            </h2>
+            <hr>
+
+            <!-- - Texto de apoyo -->
+            <p class="py-3 text-center">Tota la informació sobre els teus espais.</p>
+        </div>
+
+        <!-- - Imagen principal -->
+        <div class="col-md-6 py-3">
+            <img src="{{ url_for('static', filename = 'img/dolmen_800x400.jpeg') }}" alt="Imagen de bienvenida"
+                class="img-fluid rounded-4 shadow-lg">
+        </div>
+    </div>
+</section>
+
+<!-- - Bloque de busqueda -->
+<div class="text-center">
+    <div class="py-2">
+
+<!-- - Titulo del buscador -->
+        <h2 class="">De quin espai estàs buscant informació?</h2>
+
+        <div class="col-lg-6 mx-auto">
+            
+<!-- - Formulario de busqueda -->
+            <div class="container">
+                <form class="d-flex" method="post">
+                    <input class="form-control me-2 text-center" type="search" name="search"
+                        placeholder="...troba ràpidament l’espai i la informació" aria-label="Search">
+                    <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- - Listado de espacios -->
+<main class="container py-5">
+    <div class="row">
+
+<!-- - Recorre todos los espacios -->
+        {% for post in posts | reverse %}
+        <div class="col-md-6">
+
+<!-- - Tarjeta de cada espacio -->
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+
+<!-- - Titulo del espacio -->
+                    <h3 class="mb-0">{{post.title}}</h3>
+
+<!-- - Informacion breve -->
+                    <p class="card-text mb-auto">{{post.info }}</p>
+
+<!-- - Enlace al detalle -->
+                    <a href="{{ url_for('home.blog', url = post.url) }}" class="stretched-link">Mès...</a>
+
+<!-- - Autor y fecha -->
+                    <p class="card-text mt-3">
+                        {% if get_user(post.author).photo is none %}
+                        <img src="{{url_for('static', filename = 'img/user-dark.png') }}" alt="mdo" width="30"
+                            class="rounded-circle">
+                        {% else %}
+                        <img src="{{url_for('static', filename = get_user(post.author).photo) }}" alt="mdo" width="30"
+                            class="rounded-circle">
+                        {% endif%}
+
+                        <span class="mb-1 text-muted">
+                            <b>{{ get_user(post.author).username }}, </b>
+                            {{post.created.strftime('%d de %B %Y') }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</main>
+
+{% endblock %}

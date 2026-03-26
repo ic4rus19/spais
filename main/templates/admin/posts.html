@@ -1,0 +1,49 @@
+<!-- posts.html -->
+
+{% extends 'base.html' %}
+<!-- - Titulo de la pagina -->
+{% block title %}Públics{% endblock %}
+{% block content %}
+
+<div class="container">
+<!-- - Cabecera principal -->
+    <div class="header mt-5">
+        <h2 class="text-center">Benvingut als espais públics de <span class="text-vallgorguina">Vallgorguina</span></h2>
+        <hr>
+<!-- - Barra superior con acciones -->
+        <div class="d-flex justify-content-between mb-3">
+            <p class="fs-5 fw-bold mb-0">Panell d’administració d’espais</p>
+<!-- - Boton crear espacio -->
+            <a href="{{ url_for('post.create') }}" class="btn btn-outline-success">Afegir espai</a>
+        </div>
+    </div>
+<!-- -TABLA DONDE MOSTRAR LOS BLOGS -->
+    <table class=" table align-middle">
+        <thead>
+            <tr>
+                <th class="fs-5">Nom Espai </th>
+                <th class="fs-5 text-end">Accions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- - Recorre lista de espacios -->
+            {% for post in posts | reverse %}
+            {% if g.user.id == post.author %}
+            <tr>
+                <td>{{ post.title }} </td>
+                <!-- - Acciones editar y eliminar -->
+                <td class="text-nowrap text-end">
+                    <a href="{{ url_for('post.update', id=post.id) }}" class="btn btn-sm btn-warning me-2">Editar</a>
+                    <a href="{{ url_for('post.delete', id=post.id) }}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block message %} alert-success {% endblock %}

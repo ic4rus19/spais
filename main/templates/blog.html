@@ -1,0 +1,105 @@
+<!-- blog.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<article class="container blog-post py-4">
+
+    <!-- - Titol principal -->
+    <h1 class="blog-post-title mb-1">
+        {% block title %}{{ post.title }}{% endblock %}
+    </h1>
+
+    <!-- - Autor i data -->
+    <p class="card-text mt-3">
+        {% if get_user(post.author).photo is none %}
+        <img src="{{ url_for('static', filename='img/user-dark.png') }}" alt="mdo" width="30" class="rounded-circle">
+        {% else %}
+        <img src="{{ url_for('static', filename=get_user(post.author).photo) }}" alt="mdo" width="30"
+            class="rounded-circle">
+        {% endif %}
+
+        <span class="mb-1 text-muted">
+            <b>{{ get_user(post.author).username }}, </b>
+            {{ post.created.strftime('%d de %B %Y') }}
+        </span>
+    </p>
+
+    <!-- - Descripcio breu -->
+    {% if post.info %}
+    <p class="card-text mb-4">{{ post.info }}</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- - Dades principals -->
+    <section class="mb-4">
+        <h2 class="h4 mb-3 border-bottom border-2 border-dark pb-1 d-inline-block">Dades principals</h2>
+        <div class="row">
+            <div class="col-md-6 mb-2"><strong>Edifici:</strong> {{ post.edifici or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Tipus d'espai:</strong> {{ post.tipus_espai or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Adreça:</strong> {{ post.adreca or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Horaris:</strong> {{ post.horaris or '-' }}</div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- - Capacitat i control -->
+    <section class="mb-4">
+        <h2 class="h4 mb-3 border-bottom border-dark pb-1 d-inline-block">Capacitat i control</h2>
+        <div class="row">
+            <div class="col-md-4 mb-2"><strong>Superficie m²:</strong> {{ post.superficie_m2 or '-' }}</div>
+            <div class="col-md-4 mb-2"><strong>Aforament maxim:</strong> {{ post.aforament_maxim or '-' }}</div>
+            <div class="col-md-4 mb-2"><strong>Estat conservacio:</strong> {{ post.estat_conservacio or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Claus:</strong> {{ post.claus or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Neteja:</strong> {{ post.neteja or '-' }}</div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- - Gestio -->
+    <section class="mb-4">
+        <h2 class="h4 mb-3 border-bottom border-dark pb-1 d-inline-block">Gestio</h2>
+        <div class="row">
+            <div class="col-md-6 mb-2"><strong>Sistema de reserva:</strong> {{ post.sistema_reserva or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Responsable municipal:</strong> {{ post.responsable_municipal or '-' }}
+            </div>
+            <div class="col-md-6 mb-2"><strong>Telefon:</strong> {{ post.telefon or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Correu electronic:</strong> {{ post.email or '-' }}</div>
+            <div class="col-md-6 mb-2"><strong>Taxa / preu public:</strong> {{ post.taxa_preu_public or '-' }}</div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- - Observacions -->
+    {% if post.observacions %}
+    <section class="mb-4">
+        <h2 class="h4 mb-3 border-bottom border-dark pb-1 d-inline-block">Observacions</h2>
+        <p>{{ post.observacions }}</p>
+    </section>
+    <hr>
+    {% endif %}
+
+    <!-- - Contingut ampliat -->
+    {% if post.content %}
+    <section class="mb-5">
+        <h2 class="h4 mb-3">Contingut ampliat</h2>
+        <div>
+            {{ post.content | safe }}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- - Boto sortir -->
+    <div class="d-flex justify-content-end">
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm">
+            Sortir
+        </a>
+    </div>
+
+</article>
+
+{% endblock %}

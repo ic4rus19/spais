@@ -1,0 +1,68 @@
+<!-- profile.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Sección de bienvenida -->
+<div class="container d-flex justify-content-center">
+
+    <form method="post" class="mt-5 w-100" style="max-width: 700px;" enctype="multipart/form-data">
+
+        <div class="row">
+
+            <!-- - Columna perfil (estrecha y centrada) -->
+            <div class="col-md-4 text-center">
+
+                {% if user.photo is none %}
+                <img src="{{ url_for('static', filename = 'img/avatarNegro.png')}}" width="100"
+                    class="rounded-circle mb-3" alt="Foto de perfil">
+                {% else %}
+                <img src="{{ url_for('static', filename = user.photo)}}" width="120" class="rounded-circle mb-3"
+                    alt="Foto de perfil">
+                {% endif %}
+
+                <!-- - Input foto -->
+                <div class="mb-3 text-center">
+                    <label for="photo" class="btn btn-outline-primary btn-sm">
+                        Canviar foto
+                    </label>
+                    <input type="file" id="photo" name="photo" class="d-none">
+                </div>
+
+                <!-- - Botones debajo -->
+                <div class="d-grid gap-3 mt-5">
+                    <button type="submit" class="btn btn-primary btn-sm">Desar</button>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm">Sortir</a>
+                </div>
+            </div>
+
+            <!-- - Columna datos -->
+            <div class="col-md-8">
+
+                <h1 class="h3 mt-4 mt-md-0">{% block title %}Perfil d'usuari{% endblock %}</h1>
+                <hr class="mb-4">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nom d'usuari</label>
+                    <input type="text" class="form-control form-control-sm" id="username" name="username"
+                        value="{{user.username}}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correu Electrònic</label>
+                    <input type="email" class="form-control form-control-sm" id="email" name="email"
+                        value="{{user.email}}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Canviar Contrasenya</label>
+                    <input type="password" class="form-control form-control-sm" id="password" name="password">
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+{% endblock %}
